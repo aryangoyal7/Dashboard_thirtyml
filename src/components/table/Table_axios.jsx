@@ -9,30 +9,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const List_axios = () => {
+
+
+const ListAxios = ({ hotelId }) => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    /*
-    const fetchData = async () => {
-      const result = await axios.get('/api/bookings'); // replace with your API endpoint
-      setRows(result.data);
+    const fetchBookings = async () => {
+      try {
+        const response = await axios.get('https://example.com/api/bookings',   //API endpoint
+        {
+          params: {
+            ClubId: hotelId
+          }
+        });
+        setRows(response.data);
+      } catch (error) {
+        console.error('Error fetching bookings:', error);
+      }
     };
-    fetchData();
-  }, []);
-  */
+
+    fetchBookings();
+  }, [hotelId]);
+
   
 
-  const fetchBookings = async () => {
-    const response = await axios.get('/api/bookings', { // replace with your API endpoint
-      params: {
-        ClubId: ClubId
-      }
-    });
-    setRows(result.data);
-  };
-  fetchBookings();
-}, [hotelId]);
+
 
 
 
@@ -75,6 +77,7 @@ const List_axios = () => {
       </Table>
     </TableContainer>
   );
-};
+    };
 
-export default List_axios;
+
+export default ListAxios;

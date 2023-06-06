@@ -1,65 +1,77 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./login.css";
+import { useNavigate } from 'react-router-dom';
 
 const LoginModal = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [clubname, setClubname] = useState('');
+  const [username, setUsername] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-
-  /*
-    Note that this example assumes that the server is already set up to handle
-    authentication using JWT, and that it has API endpoints at /api/login and
-    /api/register that accept POST requests with a JSON payload containing a\
-    username, mobile number, and password field.
-  */
+  const navigate = useNavigate();
+  const [isLoggedIn, setLoggedIn] = useState(false); // Track login status
 
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:5005/api/Clubusers/loginClub', {
-        clubname,
+        username,
         mobileNumber,
         password,
       });
       const token = response.data.token;
       localStorage.setItem('token', token);
       setError(null);
-      // do something with the token, like redirect to dashboard page
+      setLoggedIn(true); // Set login status to true
+      // Redirect to the home route
+      navigate('/');
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+  
+
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post('http://localhost:5005/api/Clubusers/registerClub', {
+        username,
+        mobileNumber,
+        password,
+      });
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+      setError(null);
+      setLoggedIn(true); // Set login status to true
+      // Redirect to the home route
+      navigate('/');
     } catch (error) {
       setError(error.response.data.message);
     }
   };
 
-  const handleRegister = async () => {
-    try {
-      const response = await axios.post('http://localhost:5005/api/Clubusers/registerClub', {
-        clubname,
-        mobileNumber,
-        password,
-      });
-      const token = response.data.token;
-      localStorage.setItem('token', token);
-      setError(null);
-      // do something with the token, like redirect to dashboard page
-    } catch (error) {
-      setError(error.response.data.message);
-    }
-  };
+  // Render null if user is already logged in
+  if (isLoggedIn) {
+    return null;
+  }
 
   return (
     <div className="modal">
       <h2>{isLogin ? 'Log in' : 'Register'}</h2>
       <div className="form">
-        <label htmlFor="username">Clubname</label>
-        <input type="text" id="username" value={clubname} onChange={(e) => setClubname(e.target.value)} />
+        <label htmlFor="username">Username</label>
+        <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <label htmlFor="mobileNumber">Mobile Number</label>
         <input type="text" id="mobileNumber" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
         <label htmlFor="password">Password</label>
         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         {error && <p className="error">{error}</p>}
-        <button onClick={isLogin ? handleLogin : handleRegister}>{isLogin ? 'Log in' : 'Register'}</button>
+        <button onClick={() => {
+          if (isLogin) {
+            handleLogin();
+          } else {
+            handleRegister();
+          }
+        }}>{isLogin ? 'Log in' : 'Register'}</button>
         <button onClick={() => setIsLogin(!isLogin)}>{isLogin ? 'Register' : 'Log in'}</button>
       </div>
     </div>

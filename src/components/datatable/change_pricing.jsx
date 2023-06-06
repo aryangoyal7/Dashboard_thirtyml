@@ -1,60 +1,94 @@
-import React, { useState } from "react";
-import { TextField, Button } from "@material-ui/core";
-import axios from "axios";
+
+
+
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import { TextField, Button } from '@material-ui/core';
 
 const SubmissionForm = () => {
-  const [Stag_price, setParam1] = useState("");
-  const [Couple_price, setParam2] = useState("");
-  const [Lady_price, setParam3] = useState("");
+  const [stagPrice, setStagPrice] = useState('');
+  const [couplePrice, setCouplePrice] = useState('');
+  const [ladyPrice, setLadyPrice] = useState('');
+  const [clubID, setClubID] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [time, setTime] = useState('');
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/bookings", {
-        Stag_price,
-        Couple_price,
-        Lady_price,
+      const response = await axios.post('/api/bookings', {
+        Stag_price: stagPrice,
+        Couple_price: couplePrice,
+        Lady_price: ladyPrice,
+        ClubId: clubID,
+        MobileNumber: mobileNumber,
+        Time: time,
       });
       console.log(response.data); // handle the response as needed
     } catch (error) {
       console.error(error);
     }
   };
-    
-    // fetch this by first adding filter by params
-
 
   return (
     <form onSubmit={handleSubmit}>
       <TextField
-        label="Stag_price"
+        label="Stag Price"
         variant="outlined"
         fullWidth
         margin="normal"
-        value={Stag_price}
-        onChange={(e) => setParam1(e.target.value)}
+        value={stagPrice}
+        onChange={(e) => setStagPrice(e.target.value)}
       />
       <TextField
-        label="Couple_price"
+        label="Couple Price"
         variant="outlined"
         fullWidth
         margin="normal"
-        value={Couple_price}
-        onChange={(e) => setParam2(e.target.value)}
+        value={couplePrice}
+        onChange={(e) => setCouplePrice(e.target.value)}
       />
       <TextField
-        label="Lady_price"
+        label="Lady Price"
         variant="outlined"
         fullWidth
         margin="normal"
-        value={Lady_price}
-        onChange={(e) => setParam3(e.target.value)}
+        value={ladyPrice}
+        onChange={(e) => setLadyPrice(e.target.value)}
       />
+      <TextField
+        label="Club ID"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        value={clubID}
+        onChange={(e) => setClubID(e.target.value)}
+      />
+      <TextField
+        label="Mobile Number"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        value={mobileNumber}
+        onChange={(e) => setMobileNumber(e.target.value)}
+      />
+      <TextField
+        label="Time"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        value={ladyPrice}
+        onChange={(e) => setTime(e.target.value)}
+      />
+      
       <Button type="submit" variant="contained" color="primary">
-        Submit New prices
+        Submit New Prices
       </Button>
     </form>
   );
 };
 
 export default SubmissionForm;
+
