@@ -1,14 +1,14 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./home.scss";
-import Widget from "../../components/widget/Widget";
-import Featured from "../../components/featured/Featured";
-import Chart from "../../components/chart/Chart";
-import Table from "../../components/table/Table";
-import Table_axios from "../../components/table/Table_axios";
+// import Widget from "../../components/widget/Widget";
+// import Featured from "../../components/featured/Featured";
+// import Chart from "../../components/chart/Chart";
+// import Table from "../../components/table/Table";
+// import Table_axios from "../../components/table/Table_axios";
+// import { useEffect } from "react";
+// import Axios from 'axios';
 import SubmissionForm from "../../components/datatable/change_pricing";
-import { useEffect } from "react";
-import Axios from 'axios';
 
 const Home = () => {
 

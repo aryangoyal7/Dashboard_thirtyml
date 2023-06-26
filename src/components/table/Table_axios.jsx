@@ -12,7 +12,7 @@ import jwt_decode from 'jwt-decode';
 
 const List_axios = () => {
   const [bookings, setBookings] = useState([]);
-  const [rows, setRows] = useState([]);
+  // const [rows, setRows] = useState([]);
 
   useEffect(() => {
       const fetchBookings = async () => {
