@@ -18,7 +18,7 @@ const LoginModal = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:5005/api/Clubusers/loginClub', {
+      const response = await axios.post('http://35.192.171.200/api/Clubusers/loginClub', {
         clubname,
         mobileNumber,
         password,
@@ -34,7 +34,7 @@ const LoginModal = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('http://localhost:5005/api/Clubusers/registerClub', {
+      const response = await axios.post('http://35.192.171.200/api/Clubusers/registerClub', {
         clubname,
         mobileNumber,
         password,
