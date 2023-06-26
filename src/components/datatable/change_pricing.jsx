@@ -21,7 +21,7 @@ const SubmissionForm = () => {
       axios.defaults.headers.common["Authorization"] = document.cookie.split(";")[1];
       console.log("AXIOSSSS: ",axios.defaults.headers.common["Authorization"])
       console.log("TRYING")
-      const response = await axios.put(`http://35.192.171.200/api/bookings/${decodedToken.user.id}`,
+      const response = await axios.put(`http://35.192.171.200:5005/api/bookings/${decodedToken.user.id}`,
       {
         "ClubID": decodedToken.user.id,
         "ClubName": decodedToken.user.ClubName,
