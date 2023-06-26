@@ -24,7 +24,7 @@ const List_axios = () => {
           const clubID = decodedToken.user.id;
           console.log("USER ID: ", decodedToken.user);
           const response = await axios.get(
-            `http://35.192.171.200/api/bookings/club/${clubID}`,
+            `http://35.192.171.200:5005/api/bookings/club/${clubID}`,
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
