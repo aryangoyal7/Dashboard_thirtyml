@@ -7,8 +7,35 @@ import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
 import Table_axios from "../../components/table/Table_axios";
 import SubmissionForm from "../../components/datatable/change_pricing";
+import { useEffect } from "react";
+import Axios from 'axios';
 
 const Home = () => {
+
+//   async function UserData() {
+//     // console.log("USE PARAMS: ", hotel);
+//     try {
+//       const token = document.cookie.split(';')[1].split(" ")[1];
+//       const response = await Axios.get(
+//         `http://localhost:5005/api/Clubusers/currentClub`,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         }
+//       );
+//       console.log("REQUEST COMPLETED ", response.data);
+
+//     } catch (error) {
+
+//       console.log(error);
+//     }
+//   }
+// useEffect(() => {
+//   UserData();
+// }, [])
+
+  console.log(document.cookie);
   return (
     <div className="home">
       <Sidebar />
