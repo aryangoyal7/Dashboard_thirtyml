@@ -1,7 +1,9 @@
 {
   "name": "lamadmin",
   "version": "0.1.0",
-  "private": true,
+  "homepage": ".",
+  "start_url": ".",
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
@@ -28,7 +30,9 @@
     "start": "PORT=3006 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "react-scripts build && gcloud app deploy",
+    "demoDeploy": "react-scripts build && gcloud app deploy demo.yaml"
   },
   "eslintConfig": {
     "extends": [

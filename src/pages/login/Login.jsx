@@ -33,13 +33,14 @@ const Login = () => {
       password
     };
 
-    axios.post('http://34.93.237.206:5005/api/Clubusers/loginClub', loginData, { withCredentials: true })
+    axios.post('https://server.thirtyml.in/api/Clubusers/loginClub', loginData, { withCredentials: true })
       .then((response) => {
         // console.log("LOGIN DATA:", loginData);
         // console.log("api response here")
         // Handle the response from the API
         // console.log(response.data.access_token);
         console.log("login successful")
+        localStorage.setItem("access_token",response.data.access_token);
         console.log("COOKIE: ", response.data);
         axios.defaults.headers.common["Authorization"] = response.data.access_token;
         console.log("AXIOS: ",axios.defaults.headers.common["Authorization"])

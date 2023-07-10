@@ -18,13 +18,14 @@ const LoginModal = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://34.93.237.206:5005/api/Clubusers/loginClub', {
+      const response = await axios.post('https://server.thirtyml.in/api/Clubusers/loginClub', {
         clubname,
         mobileNumber,
         password,
       });
       const token = response.data.token;
-      localStorage.setItem('token', token);
+      // localStorage.setItem('token', token);
+      localStorage.setItem("access_token",response.data.access_token);
       setError(null);
       // do something with the token, like redirect to dashboard page
     } catch (error) {
@@ -34,7 +35,7 @@ const LoginModal = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('http://34.93.237.206:5005/api/Clubusers/registerClub', {
+      const response = await axios.post('https://server.thirtyml.in/api/Clubusers/registerClub', {
         clubname,
         mobileNumber,
         password,

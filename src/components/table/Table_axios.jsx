@@ -24,7 +24,7 @@ const List_axios = () => {
           const clubID = decodedToken.user.id;
           console.log("USER ID: ", decodedToken.user);
           const response = await axios.get(
-            `http://34.93.237.206:5005/api/bookings/club/${clubID}`,
+            `https://server.thirtyml.in/api/bookings/club/${clubID}`,
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -41,7 +41,7 @@ const List_axios = () => {
   
       fetchBookings();
     }, []);
-    console.log("MY BOOKINGS",bookings[0]?.ClubID)
+    console.log("MY BOOKINGS",bookings[0]?.ClubID);
     /*
     const fetchData = async () => {
       const result = await axios.get('/api/bookings'); // replace with your API endpoint
